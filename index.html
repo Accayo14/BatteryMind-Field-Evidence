@@ -1,0 +1,226 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>BatteryMind Field Evidence</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+/* Layout: plain white page. Three equal tab buttons at the top, nothing selected on load. Choosing a tab opens its content underneath. Single light look by choice. */
+:root {
+  --bg: #ffffff;
+  --ink: #12261c;
+  --muted: #5a6a60;
+  --line: #dde3dc;
+  --accent: #1f6b45;
+  --lime: #b9e07d;
+  --on-lime: #12261c;
+  --dot-off: #d5ddd5;
+  --font-display: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html, body { background: var(--bg); }
+body {
+  color: var(--ink);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.6;
+  margin: 0;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0;
+}
+.wrap { max-width: 880px; margin: 0 auto; padding: 40px 0 56px; }
+h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; line-height: 1.15; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+.brand { font-family: var(--font-display); font-weight: 700; font-size: 20px; margin: 0 0 24px; letter-spacing: -0.01em; }
+
+/* tabs */
+.tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.tab {
+  font-family: var(--font-display); font-weight: 700; font-size: clamp(16px, 2.6vw, 20px); line-height: 1.25;
+  color: var(--ink); background: #fff; border: 1.5px solid var(--line); border-radius: 12px;
+  padding: 22px 16px; cursor: pointer; text-align: center; min-height: 84px;
+}
+.tab:hover { border-color: var(--accent); }
+.tab[aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+@media (max-width: 560px) { .tabs { grid-template-columns: minmax(0, 1fr); } .tab { min-height: 64px; padding: 16px; } }
+
+.panel { padding-top: 40px; }
+
+.sub { color: var(--muted); max-width: 62ch; margin: 0 0 8px; }
+.mix { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 32px; padding: 0; list-style: none; }
+.mix li { font-size: 14px; border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; }
+
+/* findings */
+.finding { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 20px 40px; padding: 28px 0; border-top: 1px solid var(--line); }
+.finding:first-of-type { border-top: 0; padding-top: 0; }
+.finding h3 { font-size: 22px; font-weight: 700; margin-bottom: 14px; }
+.meter { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; flex-wrap: wrap; }
+.dots { display: flex; gap: 4px; }
+.dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--dot-off); display: block; }
+.dots i.on { background: var(--accent); }
+blockquote { margin: 0 0 18px; padding: 0; }
+blockquote p { margin: 0 0 4px; font-size: 18px; line-height: 1.5; }
+blockquote footer { font-size: 14px; color: var(--muted); padding: 0; }
+.so-what { margin: 0; font-size: 15px; color: var(--muted); }
+.so-what b { color: var(--ink); font-weight: 600; }
+@media (max-width: 720px) { .finding { grid-template-columns: minmax(0, 1fr); } }
+
+/* audio */
+.clips { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 16px; }
+.clip { border: 1px solid var(--line); border-radius: 12px; padding: 20px; min-width: 0; }
+.clip h3 { font-size: 22px; margin-bottom: 4px; }
+.clip .meta { color: var(--muted); font-size: 14px; margin: 0 0 16px; font-variant-numeric: tabular-nums; }
+.clip audio { width: 100%; display: block; }
+
+/* video */
+.video { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 24px; align-items: center; background: var(--accent); color: #fff; border-radius: 12px; padding: 28px; }
+.video svg { width: 72px; height: 72px; display: block; }
+.video h3 { font-size: 24px; margin-bottom: 8px; }
+.video p { margin: 0 0 18px; max-width: 56ch; opacity: .94; }
+.btn { display: inline-block; text-decoration: none; background: var(--lime); color: var(--on-lime); font-weight: 600; padding: 10px 18px; border-radius: 8px; }
+.btn:hover { filter: brightness(1.05); }
+@media (max-width: 560px) { .video { grid-template-columns: minmax(0, 1fr); } }
+</style>
+
+<div class="wrap">
+  <p class="brand">BatteryMind</p>
+
+  <div class="tabs" role="tablist" aria-label="Sections">
+    <button class="tab" role="tab" id="tab-insights" aria-controls="insights" aria-selected="false" type="button">Customer insights</button>
+    <button class="tab" role="tab" id="tab-video" aria-controls="video" aria-selected="false" type="button">Battery passport video</button>
+    <button class="tab" role="tab" id="tab-audio" aria-controls="audio" aria-selected="false" type="button">Interview audio</button>
+  </div>
+
+  <div class="panel" id="insights" role="tabpanel" aria-labelledby="tab-insights" hidden>
+    <p class="sub">Five findings from 16 interviews, each raised independently in at least three. The dots show how many of the 16.</p>
+    <ul class="mix" aria-label="Who we interviewed">
+      <li>4 battery pack makers</li><li>4 registered recyclers</li><li>2 EPR consultants</li><li>2 vehicle OEMs and dealers</li><li>2 informal scrap aggregators</li><li>2 experts</li>
+    </ul>
+
+    <div class="finding">
+      <div>
+        <h3>Filing is manageable. Getting the battery back is not.</h3>
+        <div class="meter"><span class="dots" role="img" aria-label="10 of 16 interviews"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>10 of 16 interviews</span></div>
+      </div>
+      <div>
+        <blockquote><p>“Filing is manageable. Collection. Definitely.”</p><footer>Battery manufacturer, in-house compliance team</footer></blockquote>
+        <blockquote><p>“The sale is the easy part. Nobody updates the record when the asset moves.”</p><footer>Compliance lead, battery manufacturer</footer></blockquote>
+        <blockquote><p>“Define traceability first. A serial number nobody owns the update for is a database with gaps.”</p><footer>Battery circularity expert</footer></blockquote>
+        <p class="so-what"><b>What it changed:</b> custody leads. Filing becomes the on-ramp.</p>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div>
+        <h3>Informal buyers win on rate, cash and speed, not on principle.</h3>
+        <div class="meter"><span class="dots" role="img" aria-label="7 of 16 interviews"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>7 of 16 interviews</span></div>
+      </div>
+      <div>
+        <blockquote><p>“Registration doesn’t automatically give you material.”</p><footer>Registered recycler</footer></blockquote>
+        <blockquote><p>“Rate important hai.” (Rate is what matters.)</p><footer>Informal scrap aggregator</footer></blockquote>
+        <blockquote><p>“We can run the process. The batteries do not arrive.”</p><footer>Registered recycler</footer></blockquote>
+        <p class="so-what"><b>What it changed:</b> formalising needs an incentive, not an argument.</p>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div>
+        <h3>Any extra step is dropped unless it saves time or earns money.</h3>
+        <div class="meter"><span class="dots" role="img" aria-label="8 of 16 interviews"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>8 of 16 interviews</span></div>
+      </div>
+      <div>
+        <blockquote><p>“If the app takes longer than calling my regular buyer, I will call my regular buyer.”</p><footer>Informal scrap aggregator</footer></blockquote>
+        <blockquote><p>“You can’t spend ten minutes entering details for a battery worth maybe few thousand rupees.”</p><footer>Registered recycler</footer></blockquote>
+        <blockquote><p>“QR is technology. Incentive is different.”</p><footer>Independent industry expert</footer></blockquote>
+        <p class="so-what"><b>What it changed:</b> the scan at return only happens if it pays, so we test the incentive before the technology.</p>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div>
+        <h3>A number nobody can check is not trusted.</h3>
+        <div class="meter"><span class="dots" role="img" aria-label="7 of 16 interviews"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>7 of 16 interviews</span></div>
+      </div>
+      <div>
+        <blockquote><p>“If you say 75%, why 75? What test? Which BMS parameters? What chemistry? How old?”</p><footer>Battery manufacturer, in-house compliance team</footer></blockquote>
+        <blockquote><p>“A clean digital entry is not verified material. It just looks authoritative.”</p><footer>Registered recycler</footer></blockquote>
+        <blockquote><p>“A serial number tells you identity. It does not tell you health.”</p><footer>Service and dealer operations, EV network</footer></blockquote>
+        <p class="so-what"><b>What it changed:</b> no health score from BMS data alone. A physical test and a published method come first.</p>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div>
+        <h3>Credits, not consultant fees, are the bigger compliance cost.</h3>
+        <div class="meter"><span class="dots" role="img" aria-label="3 of 16 interviews"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>3 of 16 interviews</span></div>
+      </div>
+      <div>
+        <blockquote><p>“The cost can be much more significant than my professional fee.”</p><footer>EPR compliance consultant</footer></blockquote>
+        <p class="so-what"><b>What it changed:</b> we re-sized the market from credit spend, and we price BatteryMind to replace an existing cost, never to add one.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" id="video" role="tabpanel" aria-labelledby="tab-video" hidden>
+    <div class="video">
+      <svg viewBox="0 0 72 72" aria-hidden="true" focusable="false">
+        <rect x="14" y="10" width="44" height="56" rx="6" fill="none" stroke="#b9e07d" stroke-width="3"/>
+        <rect x="28" y="4" width="16" height="8" rx="2" fill="#b9e07d"/>
+        <g fill="#b9e07d"><rect x="24" y="24" width="8" height="8"/><rect x="40" y="24" width="8" height="8"/><rect x="24" y="40" width="8" height="8"/><rect x="36" y="36" width="4" height="4"/><rect x="44" y="44" width="4" height="4"/></g>
+      </svg>
+      <div>
+        <h3>A new “passport” helps you choose sustainable car batteries</h3>
+        <p>World Economic Forum · 2 min 6 s · January 2025. Scanning a battery’s QR code shows its minerals, where they were mined and how it ranks on environmental and labour factors.</p>
+        <a class="btn" href="https://www.weforum.org/videos/sustainable-car-batteries-identifier" target="_blank" rel="noopener">Watch on weforum.org</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" id="audio" role="tabpanel" aria-labelledby="tab-audio" hidden>
+    <div class="clips">
+      <article class="clip">
+        <h3>Assessment</h3>
+        <p class="meta">Clip 1 · 1 min 33 s</p>
+        <audio controls preload="metadata" src="audio/assessment-clip.mp3">Your browser cannot play this clip.</audio>
+      </article>
+      <article class="clip">
+        <h3>Collection</h3>
+        <p class="meta">Clip 2 · 23 s</p>
+        <audio controls preload="metadata" src="audio/collection-clip.mp3">Your browser cannot play this clip.</audio>
+      </article>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  var ids = ['insights', 'video', 'audio'];
+  function show(id, push) {
+    if (ids.indexOf(id) < 0) id = '';
+    tabs.forEach(function (t) {
+      t.setAttribute('aria-selected', t.id === 'tab-' + id ? 'true' : 'false');
+    });
+    ids.forEach(function (i) { document.getElementById(i).hidden = (i !== id); });
+    if (id !== 'audio') {
+      document.querySelectorAll('audio').forEach(function (a) { a.pause(); });
+    }
+    if (push) { try { history.replaceState(null, '', '#' + id); } catch (e) { location.hash = id; } }
+  }
+  tabs.forEach(function (t, idx) {
+    t.addEventListener('click', function () { show(t.id.replace('tab-', ''), true); });
+    t.addEventListener('keydown', function (e) {
+      var n = null;
+      if (e.key === 'ArrowRight') n = tabs[(idx + 1) % tabs.length];
+      if (e.key === 'ArrowLeft') n = tabs[(idx + tabs.length - 1) % tabs.length];
+      if (n) { e.preventDefault(); n.focus(); show(n.id.replace('tab-', ''), true); }
+    });
+  });
+  window.addEventListener('hashchange', function () { show(location.hash.replace('#', ''), false); });
+  show(location.hash.replace('#', ''), false);
+})();
+</script>
+
+</body></html>
